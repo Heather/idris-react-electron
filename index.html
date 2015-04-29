@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="./css/base.css" />
+
+    <script src="./js/react.js"></script>
+    <script src="./js/es5-shim.min.js"></script>
+    <script src="./js/es5-sham.min.js"></script>
+    <script src="./js/console-polyfill.js"></script>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+
+    <div id="container">
+      <p>
+        To install React, follow the instructions on
+        <a href="http://www.github.com/facebook/react/">GitHub</a>.
+      </p>
+      <p>
+        If you can see this, React is not working right.
+        If you checked out the source from GitHub make sure to run <code>grunt</code>.
+      </p>
+    </div>
+
+    We are using io.js <script>document.write(process.version)</script>
+    and Electron <script>document.write(process.versions['electron'])</script>.
+
+    <script>
+      var ExampleApplication = React.createClass({
+        render: function() {
+          var elapsed = Math.round(this.props.elapsed  / 100);
+          var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+          var message =
+            'React has been successfully running for ' + seconds + ' seconds.';
+
+          return React.DOM.p(null, message);
+        }
+      });
+
+      // Call React.createFactory instead of directly call ExampleApplication({...}) in React.render
+      var ExampleApplicationFactory = React.createFactory(ExampleApplication);
+
+      var start = new Date().getTime();
+      setInterval(function() {
+        React.render(
+          ExampleApplicationFactory({elapsed: new Date().getTime() - start}),
+          document.getElementById('container')
+        );
+      }, 50);
+    </script>
+    <div id="test">Foobar</div>
+    <script src="idris.js"></script>
+  </body>
+</html>
